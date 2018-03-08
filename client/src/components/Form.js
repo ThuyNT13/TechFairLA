@@ -7,6 +7,13 @@ import ValuesCard from './ValuesCard';
 import data from '../data/test';
 import api from '../utils/api';
 
+
+const styles = {
+    column: {
+        padding: '2rem'
+    }
+}
+
 export default class Form extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +21,6 @@ export default class Form extends Component {
         this.state = {
             name: '',
             cvtext: '',
-            file: '',
             data: ''
         }
 
@@ -26,20 +32,29 @@ export default class Form extends Component {
     handleInputChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
-        console.log(value);
         const name = target.id;
 
         this.setState({
             [name]: value
         });
-        // console.log(this.state);
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
         if (this.state.name && this.state.cvtext) {
-            api.insertCoverLetter(this.state.name, this.state.cvtext)
+            api.insertCoverLetter(this.state.name, this.state.cvtext);
+
+            // axios.post('https://evening-athlete.glitch.me/coverletters', {
+            //     name: this.state.name,
+            //     coverletter: this.state.cvtext
+            //   })
+            //     .then((data) => {
+            //         console.log(data);
+            //     })
+            //     .catch((err) => {
+            //         console.log(err);
+            //     });
         }
     }
 
@@ -51,7 +66,7 @@ export default class Form extends Component {
         return (
             <div className="container-fluid">
                 <div className="row justify-content-center">
-                    <div className="col-sm-12">
+                    <div className="col-sm-12" style={styles.column}>
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="exampleFormControlTextarea1">Name</label>
@@ -68,21 +83,14 @@ export default class Form extends Component {
                                     rows="5"
                                     onChange={this.handleInputChange}></textarea>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleFormControlFile1">Example file input</label>
-                                <input
-                                    type="file"
-                                    className="form-control-file"
-                                    id="cvfile"
-                                    onChange={this.handleInputChange} />
-                            </div>
                             <button
-                                className='button'
+                                className='btn btn-dark'
                                 type='submit'>
                                     Submit
                             </button>
                         </form>
                     </div>
+                    <div className="col-sm-12 d-flex flex-wrap" style={styles.column}>
 
                     {/* {data[0].map((data) => {
                         return <PersonalityCard traits={data.personality}/>
@@ -90,6 +98,8 @@ export default class Form extends Component {
 
                     <PersonalityCard traits={data[0].personality}/>
                     <ValuesCard traits={data[0].values}/>
+
+                    </div>
 
                 </div>
             </div>

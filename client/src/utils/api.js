@@ -34,6 +34,7 @@ function insertCoverLetter(name, coverletter, filename = null, favorite = 0) {
   axios.post(glitch_url, payload)
     .then(function (resp) {
       console.log(resp);
+      return resp;
     })
     .catch(function (error) {
       console.log(error);
