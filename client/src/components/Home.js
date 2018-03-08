@@ -5,7 +5,6 @@ import Modal from 'react-responsive-modal';
 
 import dateFormat from 'dateformat';
 
-
 const styles = {
   header: {
     margin: '1rem 0'
@@ -17,7 +16,6 @@ const styles = {
     WebkitAppearance: 'none'
   }
 }
-
 
 export default class Home extends Component {
   constructor() {
@@ -45,8 +43,8 @@ export default class Home extends Component {
           id: name
         });
       }
-     console.log(event.target);
-      console.log(this.state.name);
+    console.log(event.target);
+    console.log(this.state.name);
   }
 
   onOpenModal() {
@@ -56,7 +54,6 @@ export default class Home extends Component {
   onCloseModal() {
     this.setState({ open: false });
   };
-
 
   componentDidMount() {
     fetch('https://api.mlab.com/api/1/databases/techfairla/collections/cover_letters?apiKey=jLU8gZbBNTd_WJSakfetWAA2XNZ8sxop')
@@ -91,7 +88,6 @@ export default class Home extends Component {
       return res;
     }).catch(err => err);
   }
-
 
   render() {
     if (this.state.requestFailed) return <p>Failed!</p>
@@ -132,7 +128,7 @@ export default class Home extends Component {
                       <td>{cvData['filename']}</td>
                       <td>{dateFormat(cvData['date'], "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                       <td>
-                        <Link to="/employee-view" onClick="" className="btn btn-success">Open</Link>
+                        <Link to={"/employee-view/"+cvData['_id']['$oid']} onClick="" className="btn btn-success">Open</Link>
                       </td>
                     </tr>
                   );

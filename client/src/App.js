@@ -18,7 +18,7 @@ class App extends Component {
           <div style={{padding: '2rem'}}>
             <Route exact path="/" component={Home} />
             <Route exact path="/analyze" component={Form} />
-            <Route exact path="/employee-view" component={EmployeeView} />
+            <Route exact path="/employee-view/:id" component={EmployeeView} />
           </div>
         </div>
       </Router>
