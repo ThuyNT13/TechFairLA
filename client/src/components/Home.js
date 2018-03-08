@@ -25,11 +25,28 @@ export default class Home extends Component {
 
     this.state = {
       open: false,
-      requestFailed: false
+      requestFailed: false,
+      heart: false,
+        id: ''
     };
 
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+    
+  handleToggle(event) {
+    const name = event.target.id
+     this.setState({
+         heart: !this.state.heart,
+     });
+      if(this.state.heart) {
+        this.setState({
+          id: name
+        });
+      }
+     console.log(event.target);
+      console.log(this.state.name);
   }
 
   onOpenModal() {
@@ -100,19 +117,22 @@ export default class Home extends Component {
 
 
                 {this.state.cvResult.map(function (cvData, index) {
+                var favColor= this.state.heart?'red':'black';
 
                   return (
                     <tr key={index}>
                       <th scope="row">
+                      <div id={"favorite"+index} style={{color: favColor}} onClick={this.handleToggle}> &hearts; </div>
                         <div className="form-check">
                           <input className="form-check-input" type="checkbox" value="" id={"favorite" + index} checked={cvData['favorite'] ? 'checked' : ''} />
+                      
                         </div>
                       </th>
                       <td>{cvData['name']}</td>
                       <td>{cvData['filename']}</td>
                       <td>{dateFormat(cvData['date'], "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                       <td>
-                        <Link to="/employee-view" className="btn btn-success">Open</Link>
+                        <Link to="/employee-view" onClick="" className="btn btn-success">Open</Link>
                       </td>
                     </tr>
                   );
