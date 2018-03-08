@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Navbar from './Navbar';
-
 import Modal from 'react-responsive-modal';
 
 import dateFormat from 'dateformat';
@@ -70,7 +68,6 @@ export default class Home extends Component {
         if (!this.state.cvResult) return <p>Loading...</p>
         return (
             <div>
-                <Navbar title="Personality" />
                 <div className="container-fluid">
                     <div className="row">
                         <h1>Welcome Hiring Manager</h1>
