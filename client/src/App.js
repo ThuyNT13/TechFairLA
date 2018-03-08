@@ -7,15 +7,19 @@ import './App.css';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Form from './components/Form';
+import EmployeeView from './components/EmployeeView';
 
 class App extends Component {
   render() {
     return (
       <Router className="App">
         <div>
-          <Navbar title="Personality" />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/analyze" component={Form} />
+          <Navbar title="CLmatch" />
+          <div style={{padding: '2rem'}}>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/analyze" component={Form} />
+            <Route exact path="/employee-view" component={EmployeeView} />
+          </div>
         </div>
       </Router>
     );
