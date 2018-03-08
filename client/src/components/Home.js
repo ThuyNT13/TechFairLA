@@ -113,16 +113,12 @@ export default class Home extends Component {
 
 
                 {this.state.cvResult.map(function (cvData, index) {
-                var favColor= this.state.heart?'red':'black';
+                var favColor= cvData['favorite']?'red':'black';
 
                   return (
                     <tr key={index}>
                       <th scope="row">
-                      <div id={"favorite"+index} style={{color: favColor}} onClick={this.handleToggle}> &hearts; </div>
-                        <div className="form-check">
-                          <input className="form-check-input" type="checkbox" value="" id={"favorite" + index} checked={cvData['favorite'] ? 'checked' : ''} />
-                      
-                        </div>
+                      <div id={"favorite"+index} style={{color: favColor}}> &hearts; </div>
                       </th>
                       <td>{cvData['name']}</td>
                       <td>{cvData['filename']}</td>
